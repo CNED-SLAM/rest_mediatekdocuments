@@ -1,4 +1,13 @@
 RewriteEngine on
-RewriteRule ^([a-zA-Z]+)$ mediatekdocuments.php?table=$1
-RewriteRule ^([a-zA-Z]+)/({.*})$ mediatekdocuments.php?table=$1&champs=$2
-RewriteRule ^([a-zA-Z]+)/([a-zA-Z0-9]+)/({.*})$ mediatekdocuments.php?table=$1&id=$2&champs=$3
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^$ mediatekdocuments.php?error=404 [L]
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^([a-zA-Z0-9_]+)$ mediatekdocuments.php?table=$1 [B,L]
+RewriteCond %{REQUEST_METHOD} =GET
+RewriteRule ^([a-zA-Z0-9_]+)/({.*})$ mediatekdocuments.php?table=$1&champs=$2 [B,L]
+RewriteCond %{REQUEST_METHOD} =POST
+RewriteRule ^([a-zA-Z0-9_]+)$ mediatekdocuments.php?table=$1 [B,L]
+RewriteCond %{REQUEST_METHOD} =PUT
+RewriteRule ^([a-zA-Z0-9_]+)/([a-zA-Z0-9]+)$ mediatekdocuments.php?table=$1&id=$2 [B,L]
+RewriteCond %{REQUEST_METHOD} =DELETE
+RewriteRule ^([a-zA-Z0-9_]+)/({.*})$ mediatekdocuments.php?table=$1&champs=$2 [B,L]

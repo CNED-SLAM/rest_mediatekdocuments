@@ -37,7 +37,8 @@ class ConnexionPDO {
                     $requetePrepare->bindParam(":$key", $value);				
                 }
             }	
-            return $requetePrepare->execute();			
+            $requetePrepare->execute();
+            return $requetePrepare->rowCount();			
         }catch(Exception $e){
             return null;
         }

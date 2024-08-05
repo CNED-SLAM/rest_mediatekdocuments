@@ -61,10 +61,10 @@ class Controle{
      */
     public function delete($table, $champs){
         $result = $this->accessBDD->delete($table, $champs);	
-        if ($result == null || $result == false){
-            $this->reponse(400, "requete invalide");
+        if (!is_int($result) && ($result == null || $result == false)){
+                $this->reponse(400, "requete invalide");
         }else{	
-            $this->reponse(200, "OK");
+                $this->reponse(200, "OK", $result);
         }
     }
 
@@ -75,10 +75,10 @@ class Controle{
      */
     public function post($table, $champs){
         $result = $this->accessBDD->insertOne($table, $champs);	
-        if ($result == null || $result == false){
-            $this->reponse(400, "requete invalide");
+        if (!is_int($result) && ($result == null || $result == false)){
+                $this->reponse(400, "requete invalide");
         }else{	
-            $this->reponse(200, "OK");
+                $this->reponse(200, "OK", $result);
         }
     }
 
@@ -90,10 +90,10 @@ class Controle{
      */
     public function put($table, $id, $champs){
         $result = $this->accessBDD->updateOne($table, $id, $champs);	
-        if ($result == null || $result == false){
-            $this->reponse(400, "requete invalide");
+        if (!is_int($result) && ($result == null || $result == false)){
+                $this->reponse(400, "requete invalide");
         }else{	
-            $this->reponse(200, "OK");
+                $this->reponse(200, "OK", $result);
         }
     }
 	

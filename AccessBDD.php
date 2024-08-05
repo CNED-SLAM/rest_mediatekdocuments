@@ -105,10 +105,10 @@ class AccessBDD {
         // construction de la requête
         $requete = "select * from $table where ";
         foreach ($champs as $key => $value){
-            $requete .= "$key=:$key and";
+            $requete .= "$key=:$key and ";
         }
         // (enlève le dernier and)
-        $requete = substr($requete, 0, strlen($requete)-3);								
+        $requete = substr($requete, 0, strlen($requete)-5);	
         return $this->conn->query($requete, $champs);		
     }
 
@@ -215,7 +215,7 @@ class AccessBDD {
             }
             // (enlève la dernière virgule)
             $requete = substr($requete, 0, strlen($requete)-1);
-            $requete .= ");";	
+            $requete .= ");";	 
             return $this->conn->execute($requete, $champs);		
         }else{
             return null;
@@ -239,7 +239,7 @@ class AccessBDD {
             // (enlève la dernière virgule)
             $requete = substr($requete, 0, strlen($requete)-1);				
             $champs["id"] = $id;
-            $requete .= " where id=:id;";				
+            $requete .= " where id=:id;";		
             return $this->conn->execute($requete, $champs);		
         }else{
             return null;
